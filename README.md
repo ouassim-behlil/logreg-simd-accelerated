@@ -11,31 +11,6 @@ A binary logistic regression classifier written in C++ from scratch, using SIMD 
 - **Approximating exp/sigmoid with SIMD** — implemented a Horner-scheme polynomial approximation of `exp()` entirely in SIMD registers, then built `sigmoid(x) = 1/(1+exp(-x))` on top of it.
 - **pybind11 + NumPy** — wrapping a C++ class so it can be called from Python with NumPy arrays. Used `forcecast` to handle any dtype/layout NumPy throws at it.
 
-## Project structure
-
-```
-logreg/
-├── main.cpp                        # C++ demo
-├── Makefile
-├── setup.py                        # pip install support
-├── test_logreg.py                  # Python demo
-├── logreg/
-│   ├── LogisticRegression.cpp      # model implementation
-│   ├── dispatcher.cpp              # picks best SIMD kernels at runtime
-│   ├── dot_product.cpp             # scalar / SSE / AVX / AVX2+FMA dot products
-│   ├── vect_sigmoid.cpp            # scalar / SSE / AVX / AVX2+FMA sigmoid
-│   └── include/
-│       ├── LogisticRegression.hpp
-│       ├── logreg_dispatcher.hpp
-│       ├── simd_fn.hpp
-│       ├── cpu_arch.hpp
-│       └── cpu_features.hpp
-├── bindings/
-│   └── py_logreg.cpp               # pybind11 wrapper
-└── utils/
-    └── aligned_alloc.cpp           # cross-platform aligned malloc
-```
-
 ## Build
 
 ### C++ only
