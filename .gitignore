@@ -1,0 +1,16 @@
+# Build
+*.o
+main
+*.so
+*.dylib
+
+# Python
+__pycache__/
+*.egg-info/
+build/
+dist/
+.venv/
+
+# Editor
+.vscode/
+*.swp

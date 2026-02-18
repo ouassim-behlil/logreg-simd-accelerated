@@ -7,8 +7,9 @@
 # include "cpu_features.hpp"
 # include <stdint.h>
 
-// External function pointer for the selected dot product implementation
-extern float (*dot_product)(const float* a, const float* b, uint64_t n);
+// External function pointers for the selected kernel implementations
+extern float  (*dot_product)(const float* a, const float* b, uint64_t n);
+extern float* (*sigmoid)(const float* a, uint64_t n);
 
 void	init_kernels();
 #endif
