@@ -13,14 +13,23 @@ A binary logistic regression classifier written in C++ from scratch, using SIMD 
 
 ## Build
 
-### C++ only
+### C++ only (Linux / macOS)
 
 ```bash
 make
 ./main
 ```
 
-### Python module
+### C++ only (Windows / cross-platform via CMake)
+
+```bash
+cmake -B build
+cmake --build build --config Release
+./build/main          # Linux / macOS
+build\Release\main    # Windows
+```
+
+### Python module (Linux / macOS)
 
 ```bash
 python3 -m venv .venv
@@ -29,7 +38,16 @@ pip install pybind11 numpy
 make python
 ```
 
-Or install as a package:
+### Python module (Windows)
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+pip install pybind11 numpy
+pip install -e .
+```
+
+Or on any platform:
 
 ```bash
 pip install -e .
@@ -80,5 +98,6 @@ classes = model.predict_class_batch(X)  # array of 0s and 1s
 
 ## Requirements
 
-- **Compiler:** g++ or clang++ with C++17 and x86 SIMD support
+- **Compiler:** g++, clang++, or MSVC with C++17 and x86 SIMD support
+- **Build:** Make (Linux/macOS) or CMake 3.15+ (any platform)
 - **Python (optional):** 3.8+, pybind11, numpy

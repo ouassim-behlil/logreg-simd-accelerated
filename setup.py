@@ -1,5 +1,13 @@
+import sys
+import platform
 from pybind11.setup_helpers import Pybind11Extension, build_ext
 from setuptools import setup
+
+# Pick compiler flags based on platform
+if platform.system() == "Windows":
+    extra_args = ["/O2", "/arch:AVX2", "/std:c++17"]
+else:
+    extra_args = ["-O3", "-march=native", "-std=c++17"]
 
 ext_modules = [
     Pybind11Extension(
@@ -13,7 +21,7 @@ ext_modules = [
             "utils/aligned_alloc.cpp",
         ],
         include_dirs=["logreg/include"],
-        extra_compile_args=["-O3", "-march=native", "-std=c++17"],
+        extra_compile_args=extra_args,
         language="c++",
     ),
 ]
